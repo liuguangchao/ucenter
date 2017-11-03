@@ -46,10 +46,11 @@ public class SocketServer implements InitializingBean, DisposableBean {
 		}
 	}
 
+	@Override
 	public void afterPropertiesSet() throws Exception {
 		start(7777);
 	}
-
+	@Override
 	public void destroy() throws Exception {
 		// 释放资源
 		if (bossGroup != null) {
