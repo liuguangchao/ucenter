@@ -15,7 +15,6 @@
 	classpath:org/springframework/scheduling/config/spring-task-3.0.xsd">
 
 	<!-- spring配置 -->
-	<context:component-scan base-package="com.bracelet.socket" />
 	<context:component-scan base-package="com.bracelet.controller" />
 	<context:component-scan base-package="com.bracelet.service" />
 	<context:component-scan base-package="com.bracelet.aop" />
