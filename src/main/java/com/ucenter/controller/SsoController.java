@@ -56,4 +56,20 @@ public class SsoController extends BaseController {
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/token", method = RequestMethod.POST)
+	public HttpBaseDto checkToken(@RequestParam String userId, @RequestParam String token) {
+		if (StringUtils.isAllEmpty(userId, token)) {
+			throw new BizException(RespCode.NOTEXIST_PARAM);
+		}
+		Long userid=tokenInfoService.getUserIdByToken( token );
+		String useridStr=String.valueOf( userid );
+		if (StringUtils.isEmpty( useridStr )){
+			throw  new BizException( RespCode.U_TOKEN_ERR );
+		}
+		if (!useridStr.equals( userId )){
+			throw  new BizException( RespCode.U_TOKEN_ERR );
+		}
+		return new HttpBaseDto();
+	}
 }

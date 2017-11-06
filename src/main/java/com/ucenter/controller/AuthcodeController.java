@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * 拆分验证码接口
  */
 @Controller
-@RequestMapping("/authcode")
+@RequestMapping("/code")
 public class AuthcodeController extends BaseController {
 
 
