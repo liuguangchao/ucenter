@@ -23,10 +23,10 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	JdbcTemplate jdbcTemplate;
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	public boolean insert(String tel) {
+	public boolean insert(String tel,String password) {
 		Timestamp now = Utils.getCurrentTimestamp();
 		int i = jdbcTemplate.update("insert into user_info (username, password, createtime) values (?,?,?)",
-				new Object[] { tel, "123456", now }, new int[] { Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP });
+				new Object[] { tel, password, now }, new int[] { Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP });
 		return i == 1;
 	}
 
@@ -102,4 +102,19 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		}
 		return null;
 	}
+
+	@Override
+	public UserInfo loginBypwd(String username, String pwd) {
+		String sql = "select * from user_info where username=? and password=? LIMIT 1";
+		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { username ,pwd},
+				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
+		if (list != null && !list.isEmpty()) {
+			return list.get(0);
+		} else {
+			logger.info("cannot find userinfo,username:" + username);
+		}
+		return null;
+	}
+
+
 }

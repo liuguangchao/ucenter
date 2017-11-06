@@ -4,7 +4,7 @@ import com.ucenter.entity.UserInfo;
 
 public interface IUserInfoService {
 
-	boolean insert(String tel);
+	boolean insert(String tel,String password);
 
 	boolean bindDevice(Long user_id, String imei);
 
@@ -15,5 +15,7 @@ public interface IUserInfoService {
 	UserInfo getUserInfoById(Long id);
 
 	UserInfo getUserInfoByUsername(String username);
+
+	UserInfo loginBypwd(String username,String pwd);
 
 }

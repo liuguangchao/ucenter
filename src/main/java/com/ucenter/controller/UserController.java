@@ -32,8 +32,8 @@ public class UserController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public HttpBaseDto register(@RequestParam String tel, @RequestParam String code) {
-		if (StringUtils.isAllEmpty(tel, code)) {
+	public HttpBaseDto register(@RequestParam String tel, @RequestParam String code,@RequestParam String password) {
+		if (StringUtils.isAllEmpty(tel, code,password)) {
 			throw new BizException(RespCode.NOTEXIST_PARAM);
 		}
 		if (this.authcodeService.verifyAuthCode(tel, code)) {
@@ -42,7 +42,7 @@ public class UserController extends BaseController {
 				logger.info("该手机号已经注册, tel:" + tel);
 				throw new BizException(RespCode.U_ALREADY_REGED);
 			}
-			if (this.userInfoService.insert(tel)) {
+			if (this.userInfoService.insert(tel,password)) {
 				UserInfo savedObj = userInfoService.getUserInfoByUsername(tel);
 				String token = this.tokenInfoService.genToken(savedObj.getUser_id());
 				HttpBaseDto dto = new HttpBaseDto();
