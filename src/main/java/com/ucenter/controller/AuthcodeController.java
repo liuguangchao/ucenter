@@ -24,7 +24,7 @@ public class AuthcodeController extends BaseController {
     private Logger logger = LoggerFactory.getLogger( getClass() );
 
     @ResponseBody
-    @RequestMapping(value = "/authcode/{tel}", method = RequestMethod.GET)
+    @RequestMapping(value = "/smscode/{tel}", method = RequestMethod.GET)
     public HttpBaseDto getAuthCode(@PathVariable String tel) {
         if (StringUtils.isEmpty( tel )) {
             throw new BizException( RespCode.NOTEXIST_PARAM );
@@ -35,7 +35,7 @@ public class AuthcodeController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/authcode", method = RequestMethod.POST)
+    @RequestMapping(value = "/smscode", method = RequestMethod.POST)
     public HttpBaseDto checkAuthCode(@RequestParam String tel, @RequestParam String code) {
         if (StringUtils.isAllEmpty( tel, code )) {
             throw new BizException( RespCode.NOTEXIST_PARAM );

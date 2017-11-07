@@ -28,7 +28,7 @@ public class SsoController extends BaseController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/smsLogin", method = RequestMethod.POST)
     public HttpBaseDto login(@RequestParam String tel, @RequestParam String code) {
         if (StringUtils.isAllEmpty( tel, code )) {
             throw new BizException( RespCode.NOTEXIST_PARAM );

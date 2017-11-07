@@ -1,7 +1,7 @@
 ### 用户
 
 ### 获取短信验证码
-GET /code/authcode/{tel}
+GET /code/smscode/{tel}
 
 url参数
 
@@ -18,7 +18,7 @@ url参数
 
 ### 验证短信验证码
 
-POST /code/authcode
+POST /code/smscode
 
 url参数
 
@@ -66,7 +66,7 @@ POST /user/register
 ***
 
 ### 凭短信验证码登录
-POST /sso/login
+POST /sso/smsLogin
 
 参数
 
@@ -90,7 +90,7 @@ POST /sso/login
 
 ### 密码登录
 
-POST /sso/login
+POST /sso/pwdLogin
 
 参数
 
