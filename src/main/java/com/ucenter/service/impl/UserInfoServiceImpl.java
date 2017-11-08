@@ -25,7 +25,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 	public boolean insert(String tel,String password) {
 		Timestamp now = Utils.getCurrentTimestamp();
-		int i = jdbcTemplate.update("insert into user_info (username, password, createtime) values (?,?,?)",
+		int i = jdbcTemplate.update("insert into uc_user (username, password, createtime) values (?,?,?)",
 				new Object[] { tel, password, now }, new int[] { Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP });
 		return i == 1;
 	}
@@ -36,7 +36,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 	@Override
 	public UserInfo getUserInfoById(Long id) {
-		String sql = "select * from user_info where user_id=? LIMIT 1";
+		String sql = "select * from uc_user where user_id=? LIMIT 1";
 		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { id },
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		if (list != null && !list.isEmpty()) {
@@ -49,7 +49,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 	@Override
 	public UserInfo getUserInfoByUsername(String username) {
-		String sql = "select * from user_info where username=? LIMIT 1";
+		String sql = "select * from uc_user where username=? LIMIT 1";
 		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { username },
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		if (list != null && !list.isEmpty()) {
@@ -62,7 +62,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 	@Override
 	public UserInfo loginBypwd(String username, String pwd) {
-		String sql = "select * from user_info where username=? and password=? LIMIT 1";
+		String sql = "select * from uc_user where username=? and password=? LIMIT 1";
 		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { username ,pwd},
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		if (list != null && !list.isEmpty()) {

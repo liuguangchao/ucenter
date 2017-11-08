@@ -21,7 +21,7 @@ public class SmslogServiceImpl implements ISmslogService {
 	public boolean insert(String name, String mobile, String tpl_code, String tpl_param, Integer rstatus, String rmsg) {
 		Timestamp now = Utils.getCurrentTimestamp();
 		int i = jdbcTemplate.update(
-				"insert into smslog (name, mobile, tpl_code, tpl_param, rstatus, rmsg, createtime) values (?,?,?,?,?,?,?)",
+				"insert into biz_smslog (name, mobile, tpl_code, tpl_param, rstatus, rmsg, createtime) values (?,?,?,?,?,?,?)",
 				new Object[] { name, mobile, tpl_code, tpl_param, rstatus, rmsg, now }, new int[] { Types.VARCHAR,
 						Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.TIMESTAMP });
 		return i == 1;

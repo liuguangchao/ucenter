@@ -22,7 +22,7 @@ public class TokenInfoServiceImpl implements ITokenInfoService {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public Long getUserIdByToken(String token) {
-		String sql = "select * from token_info where token=? order by createtime LIMIT 1";
+		String sql = "select * from uc_user_token where token=? order by createtime LIMIT 1";
 		List<TokenInfo> list = jdbcTemplate.query(sql, new Object[] { token },
 				new BeanPropertyRowMapper<TokenInfo>(TokenInfo.class));
 		if (list != null && !list.isEmpty()) {
@@ -36,7 +36,7 @@ public class TokenInfoServiceImpl implements ITokenInfoService {
 
 	@Override
 	public String getTokenByUserId(Long userId) {
-		String sql = "select * from token_info where user_id=? order by createtime LIMIT 1";
+		String sql = "select * from uc_user_token where user_id=? order by createtime LIMIT 1";
 		List<TokenInfo> list = jdbcTemplate.query(sql, new Object[] { userId },
 				new BeanPropertyRowMapper<TokenInfo>(TokenInfo.class));
 		if (list != null && !list.isEmpty()) {
@@ -58,7 +58,7 @@ public class TokenInfoServiceImpl implements ITokenInfoService {
 
 		// save to db
 		Timestamp now = Utils.getCurrentTimestamp();
-		jdbcTemplate.update("replace into token_info (token, user_id, createtime) values (?,?,?)",
+		jdbcTemplate.update("replace into uc_user_token (token, user_id, createtime) values (?,?,?)",
 				new Object[] { token, userId, now }, new int[] { Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP });
 
 		return token;

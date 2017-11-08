@@ -21,7 +21,7 @@ public class ApilogServiceImpl implements IApilogService {
 	public boolean insert(String name, String req, String resp, String imei, Integer rstatus, String rmsg, Long time) {
 		Timestamp now = Utils.getCurrentTimestamp();
 		int i = jdbcTemplate.update(
-				"insert into apilog (name, req, resp, imei, rstatus, rmsg, time, createtime) values (?,?,?,?,?,?,?,?)",
+				"insert into biz_apilog (name, req, resp, imei, rstatus, rmsg, time, createtime) values (?,?,?,?,?,?,?,?)",
 				new Object[] { name, req, resp, imei, rstatus, rmsg, time, now }, new int[] { Types.VARCHAR, Types.VARCHAR,
 						Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP });
 		return i == 1;

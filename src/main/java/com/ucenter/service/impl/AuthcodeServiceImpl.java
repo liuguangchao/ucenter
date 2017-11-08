@@ -38,7 +38,7 @@ public class AuthcodeServiceImpl implements IAuthcodeService {
 		String code = sb.toString();
 		// save to db
 		Timestamp now = Utils.getCurrentTimestamp();
-		jdbcTemplate.update("insert into authcode (tel, code, createtime) values (?,?,?)", new Object[] { tel, code, now },
+		jdbcTemplate.update("insert into uc_authcode (tel, code, createtime) values (?,?,?)", new Object[] { tel, code, now },
 				new int[] { Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP });
 		smsService.sendSms("短信验证码", tel, "SMS_98965016", "{\"number\":\"" + code + "\"}");
 	}
@@ -52,7 +52,7 @@ public class AuthcodeServiceImpl implements IAuthcodeService {
 		if ("0000".equals(code)) {
 			return true;
 		}
-		String sql = "select * from authcode where tel=? order by createtime desc LIMIT 1";
+		String sql = "select * from uc_authcode where tel=? order by createtime desc LIMIT 1";
 		List<Authcode> list = jdbcTemplate.query(sql, new Object[] { tel },
 				new BeanPropertyRowMapper<Authcode>(Authcode.class));
 		if (list != null && !list.isEmpty()) {
@@ -65,7 +65,7 @@ public class AuthcodeServiceImpl implements IAuthcodeService {
 				return true;
 			}
 		} else {
-			logger.info("cannot find authcode, tel:" + tel);
+			logger.info("cannot find uc_authcode, tel:" + tel);
 		}
 		return false;
 	}
