@@ -56,7 +56,6 @@ POST /user/register
         "code": 0,
         "message": "操作成功！",
         "data": {
-            "imei": null,
             "id": 15,
             "username": "18311339042",
             "token": "EF64DA28D1FED0E8361EA2F6A66DCBE9"
@@ -79,7 +78,6 @@ POST /sso/smsLogin
         "code": 0,
         "message": "操作成功！",
         "data": {
-            "imei": null,
             "id": 15,
             "username": "18311339042",
             "token": "EF64DA28D1FED0E8361EA2F6A66DCBE9"
@@ -106,7 +104,6 @@ password: 密码
     "code": 0,
     "message": "操作成功！",
     "data": {
-        "imei": null,
         "id": 15,
         "username": "18311339042",
         "token": "EF64DA28D1FED0E8361EA2F6A66DCBE9"

@@ -44,7 +44,6 @@ public class SsoController extends BaseController {
             Map<String, Object> dataMap = new HashMap<>();
             dataMap.put( "id", userInfo.getUser_id() );
             dataMap.put( "username", userInfo.getUsername() );
-            dataMap.put( "imei", userInfo.getImei() );
             dataMap.put( "token", token );
             dto.setData( dataMap );
             return dto;
@@ -71,7 +70,6 @@ public class SsoController extends BaseController {
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put( "id", userInfo.getUser_id() );
         dataMap.put( "username", userInfo.getUsername() );
-        dataMap.put( "imei", userInfo.getImei() );
         dataMap.put( "token", token );
         dto.setData( dataMap );
         return dto;

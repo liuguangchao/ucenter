@@ -49,7 +49,6 @@ public class UserController extends BaseController {
 				Map<String, Object> dataMap = new HashMap<>();
 				dataMap.put("id", savedObj.getUser_id());
 				dataMap.put("username", savedObj.getUsername());
-				dataMap.put("imei", savedObj.getImei());
 				dataMap.put("token", token);
 				dto.setData(dataMap);
 				return dto;

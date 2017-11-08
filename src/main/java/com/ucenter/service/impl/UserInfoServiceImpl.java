@@ -30,52 +30,9 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		return i == 1;
 	}
 
-	public boolean bindDevice(Long user_id, String imei) {
-		String sql = "select * from user_info where imei=? and user_id != ?";
-		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { imei, user_id },
-				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
-		if (list != null && !list.isEmpty()) {
-			logger.warn("用户[" + user_id + "]，设备[" + imei + "]已经被绑定，请核对您的设备信息!");
-			return false;
-		}
 
-		Timestamp now = Utils.getCurrentTimestamp();
-		int i = jdbcTemplate.update("update user_info set imei = ?, bindingtime = ? where user_id = ?",
-				new Object[] { imei, now, user_id }, new int[] { Types.VARCHAR, Types.TIMESTAMP, Types.INTEGER });
-		return i == 1;
-	}
 
-	public boolean unbindDevice(Long user_id, String imei) {
-		boolean flag = true;
-		Timestamp now = Utils.getCurrentTimestamp();
-		int i = jdbcTemplate.update("update user_info set imei = '', bindingtime = ? where user_id = ?",
-				new Object[] { now, user_id }, new int[] { Types.TIMESTAMP, Types.INTEGER });
-		flag = (i == 1);
-		if (flag) {
-			// clear channel
-			SocketLoginDto socketLoginDto = ChannelMap.getChannel(imei);
-			if (socketLoginDto == null || socketLoginDto.getChannel() == null) {
-				logger.info("用户[" + user_id + "]，设备[" + imei + "]对应的channel不存在，无需关闭!");
-			} else {
-				Channel channel = socketLoginDto.getChannel();
-				channel.close();
-			}
-		}
-		return flag;
-	}
 
-	@Override
-	public UserInfo getUserInfoByImei(String imei) {
-		String sql = "select * from user_info where imei=? LIMIT 1";
-		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { imei },
-				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
-		if (list != null && !list.isEmpty()) {
-			return list.get(0);
-		} else {
-			logger.info("cannot find userinfo,imei:" + imei);
-		}
-		return null;
-	}
 
 	@Override
 	public UserInfo getUserInfoById(Long id) {

@@ -43,11 +43,7 @@ CREATE TABLE `user_info` (
   `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `dv` varchar(128) DEFAULT NULL COMMENT '设备固件版本号',
-  `sd` varchar(128) DEFAULT NULL COMMENT '软件版本号',
-  `imei` varchar(128) DEFAULT NULL,
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `bindingtime` timestamp NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `unique_idx_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
@@ -55,20 +51,20 @@ CREATE TABLE `user_info` (
 -- ----------------------------
 -- Records of user_info
 -- ----------------------------
-INSERT INTO `user_info` VALUES ('1', 'test1', '123456', null, null, '85988233', '2017-09-06 21:26:40', null);
-INSERT INTO `user_info` VALUES ('2', 'test2', '123456', null, null, '869758001213076', '2017-09-06 21:27:43', null);
-INSERT INTO `user_info` VALUES ('3', 'test3', '123456', null, null, '869758001213084', '2017-09-06 21:28:09', null);
-INSERT INTO `user_info` VALUES ('4', 'test4', '123456', null, null, '123456789012380', '2017-09-07 09:36:46', null);
-INSERT INTO `user_info` VALUES ('5', 'test5', '123456', null, null, '869758001213076', '2017-09-12 14:36:35', null);
-INSERT INTO `user_info` VALUES ('6', 'test6', '123456', null, null, '869758001213084', '2017-09-12 14:36:58', null);
-INSERT INTO `user_info` VALUES ('7', 'test7', '123456', null, null, '869758001213092', '2017-09-12 14:37:29', null);
-INSERT INTO `user_info` VALUES ('8', 'test8', '123456', null, null, '869758001213100', '2017-09-12 14:37:56', null);
-INSERT INTO `user_info` VALUES ('9', 'test9', '123456', null, null, '869758001213118', '2017-09-12 14:38:26', null);
-INSERT INTO `user_info` VALUES ('10', 'test10', '123456', null, null, '869758001213126', '2017-09-12 14:38:46', null);
-INSERT INTO `user_info` VALUES ('11', 'test11', '123456', null, null, '869758001213134', '2017-09-12 14:39:10', null);
-INSERT INTO `user_info` VALUES ('12', 'test12', '123456', null, null, '869758001213142', '2017-09-12 14:39:34', null);
-INSERT INTO `user_info` VALUES ('13', 'test13', '123456', null, null, '869758001213159', '2017-09-12 14:39:56', null);
-INSERT INTO `user_info` VALUES ('14', 'test14', '123456', null, null, '869758001213167', '2017-09-12 14:40:18', null);
+INSERT INTO `user_info` VALUES ('1', 'test1', '123456', '2017-09-06 21:26:40');
+INSERT INTO `user_info` VALUES ('2', 'test2', '123456', '2017-09-06 21:27:43');
+INSERT INTO `user_info` VALUES ('3', 'test3', '123456', '2017-09-06 21:28:09');
+INSERT INTO `user_info` VALUES ('4', 'test4', '123456', '2017-09-07 09:36:46');
+INSERT INTO `user_info` VALUES ('5', 'test5', '123456', '2017-09-12 14:36:35');
+INSERT INTO `user_info` VALUES ('6', 'test6', '123456', '2017-09-12 14:36:58');
+INSERT INTO `user_info` VALUES ('7', 'test7', '123456', '2017-09-12 14:37:29');
+INSERT INTO `user_info` VALUES ('8', 'test8', '123456', '2017-09-12 14:37:56');
+INSERT INTO `user_info` VALUES ('9', 'test9', '123456', '2017-09-12 14:38:26');
+INSERT INTO `user_info` VALUES ('10', 'test10', '123456', '2017-09-12 14:38:46');
+INSERT INTO `user_info` VALUES ('11', 'test11', '123456', '2017-09-12 14:39:10');
+INSERT INTO `user_info` VALUES ('12', 'test12', '123456', '2017-09-12 14:39:34');
+INSERT INTO `user_info` VALUES ('13', 'test13', '123456', '2017-09-12 14:39:56');
+INSERT INTO `user_info` VALUES ('14', 'test14', '123456', '2017-09-12 14:40:18');
 
 
 
