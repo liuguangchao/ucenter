@@ -39,10 +39,10 @@ public class SsoController extends BaseController {
                 logger.info( "该手机号尚未注册, tel:" + tel );
                 throw new BizException( RespCode.U_TEL_NOT_REGED );
             }
-            String token = this.tokenInfoService.genToken( userInfo.getUser_id() );
+            String token = this.tokenInfoService.genToken( userInfo.getId() );
             HttpBaseDto dto = new HttpBaseDto();
             Map<String, Object> dataMap = new HashMap<>();
-            dataMap.put( "id", userInfo.getUser_id() );
+            dataMap.put( "id", userInfo.getId() );
             dataMap.put( "username", userInfo.getUsername() );
             dataMap.put( "token", token );
             dto.setData( dataMap );
@@ -65,10 +65,10 @@ public class SsoController extends BaseController {
             logger.info( "该手机号尚未注册, tel:" + tel );
             throw new BizException( RespCode.U_TEL_NOT_REGED );
         }
-        String token = this.tokenInfoService.genToken( userInfo.getUser_id() );
+        String token = this.tokenInfoService.genToken( userInfo.getId() );
         HttpBaseDto dto = new HttpBaseDto();
         Map<String, Object> dataMap = new HashMap<>();
-        dataMap.put( "id", userInfo.getUser_id() );
+        dataMap.put( "id", userInfo.getId() );
         dataMap.put( "username", userInfo.getUsername() );
         dataMap.put( "token", token );
         dto.setData( dataMap );

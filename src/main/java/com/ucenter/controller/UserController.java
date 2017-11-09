@@ -44,10 +44,10 @@ public class UserController extends BaseController {
 			}
 			if (this.userInfoService.insert(tel,password)) {
 				UserInfo savedObj = userInfoService.getUserInfoByUsername(tel);
-				String token = this.tokenInfoService.genToken(savedObj.getUser_id());
+				String token = this.tokenInfoService.genToken(savedObj.getId());
 				HttpBaseDto dto = new HttpBaseDto();
 				Map<String, Object> dataMap = new HashMap<>();
-				dataMap.put("id", savedObj.getUser_id());
+				dataMap.put("id", savedObj.getId());
 				dataMap.put("username", savedObj.getUsername());
 				dataMap.put("token", token);
 				dto.setData(dataMap);

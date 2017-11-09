@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Data
 public class UserInfo {
-	private Long user_id;
+	private Long id;
 	private String username;
 	// 暂时不用
 	private String password;

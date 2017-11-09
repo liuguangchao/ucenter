@@ -58,7 +58,7 @@ public class TokenInfoServiceImpl implements ITokenInfoService {
 
 		// save to db
 		Timestamp now = Utils.getCurrentTimestamp();
-		jdbcTemplate.update("replace into uc_user_token (token, id, createtime) values (?,?,?)",
+		jdbcTemplate.update("replace into uc_user_token (token, user_id, createtime) values (?,?,?)",
 				new Object[] { token, userId, now }, new int[] { Types.VARCHAR, Types.INTEGER, Types.TIMESTAMP });
 
 		return token;
