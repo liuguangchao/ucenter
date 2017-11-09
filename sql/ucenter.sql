@@ -40,11 +40,11 @@ INSERT INTO `uc_user_token` VALUES ('14', '100010', '14', '2017-09-12 14:44:24')
 -- ----------------------------
 DROP TABLE IF EXISTS `uc_user`;
 CREATE TABLE `uc_user` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `unique_idx_username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 

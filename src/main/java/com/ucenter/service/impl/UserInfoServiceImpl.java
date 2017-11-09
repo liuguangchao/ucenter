@@ -36,7 +36,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 	@Override
 	public UserInfo getUserInfoById(Long id) {
-		String sql = "select * from uc_user where user_id=? LIMIT 1";
+		String sql = "select * from uc_user where id=? LIMIT 1";
 		List<UserInfo> list = jdbcTemplate.query(sql, new Object[] { id },
 				new BeanPropertyRowMapper<UserInfo>(UserInfo.class));
 		if (list != null && !list.isEmpty()) {

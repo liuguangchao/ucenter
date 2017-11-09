@@ -21,12 +21,12 @@ public class BaseController {
 		if (StringUtils.isEmpty(token)) {
 			throw new BizException(RespCode.NOTEXIST_PARAM);
 		}
-		Long user_id = tokenInfoService.getUserIdByToken(token);
-		if (user_id == null) {
+		Long id = tokenInfoService.getUserIdByToken(token);
+		if (id == null) {
 			logger.info("[checkTokenAndUser] 通过token检查userid不存在，token:" + token);
 			throw new BizException(RespCode.U_NOT_EXIST);
 		}
-		return user_id;
+		return id;
 	}
 
 }
