@@ -26,8 +26,11 @@ public enum RespCode {
 
 	// 设备
 	DEV_REQ_TYPE_ERR(30, "请求type错误！"),
-	DEV_NOT_EXIST(31, "用户不存在！"),
-	DEV_NOT_LOGIN(32, "设备没有登录！"),
+	DEV_NOT_EXIST(31, "设备不存在！"),
+	DEV_NOT_BIND(32, "设备没有绑定！"),
+	DEV_BIND_ERROR(33, "设备绑定错误！"),
+	DEV_UNBIND_ERROR(34, "设备绑定错误！"),
+	DEV_NOT_EXIST_RELATION(35, "设备不存在绑定关系！"),
 
 	// sos白名单
 	WL_ALREADY_EXIT(40, "该电话已经加入白名单");
