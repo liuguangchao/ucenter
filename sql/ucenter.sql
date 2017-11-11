@@ -122,3 +122,27 @@ CREATE TABLE `biz_smslog` (
 
 
 
+-- ----------------------------
+-- Table structure for `uc_user_device`
+-- ----------------------------
+DROP TABLE IF EXISTS `uc_user_device`;
+CREATE TABLE `uc_user_device` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `mac` varchar(128) NOT NULL,
+  `imei` varchar(128) NOT NULL,
+  `sn` varchar(128) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '设备类型',
+  `dv` varchar(128) DEFAULT NULL COMMENT '设备固件版本号',
+  `sd` varchar(128) DEFAULT NULL COMMENT '软件版本号',
+  `user_id` int(11) DEFAULT NULL,
+  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bindingtime` timestamp NULL,
+  PRIMARY KEY (`id`),
+  KEY `key_idx_mac` (`mac`),
+  KEY `key_idx_imei` (`imei`),
+  KEY `key_idx_sn` (`sn`),
+   KEY `key_idx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+

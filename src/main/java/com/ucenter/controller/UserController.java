@@ -1,9 +1,11 @@
 package com.ucenter.controller;
 
 import com.ucenter.dto.HttpBaseDto;
+import com.ucenter.entity.DeviceInfo;
 import com.ucenter.entity.UserInfo;
 import com.ucenter.exception.BizException;
 import com.ucenter.service.IAuthcodeService;
+import com.ucenter.service.IDeviceService;
 import com.ucenter.service.IUserInfoService;
 import com.ucenter.util.RespCode;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,6 +31,8 @@ public class UserController extends BaseController {
 	@Autowired
 	IAuthcodeService authcodeService;
 	private Logger logger = LoggerFactory.getLogger(getClass());
+	@Autowired
+	IDeviceService deviceService;
 
 
 	@ResponseBody
@@ -64,4 +69,21 @@ public class UserController extends BaseController {
 	}
 
 
+	@ResponseBody
+	@RequestMapping(value = "/device", method = RequestMethod.GET)
+	public HttpBaseDto register(@RequestParam String token) {
+		if (StringUtils.isAllEmpty(token)) {
+			throw new BizException(RespCode.NOTEXIST_PARAM);
+		}
+		Long userId=tokenInfoService.getUserIdByToken( token );
+		if (null==userId) {
+			logger.info("用户token错误");
+			throw new BizException(RespCode.U_TOKEN_ERR);
+		} else {
+			List<DeviceInfo> deviceInfos=deviceService.getListByUserId( userId );
+			HttpBaseDto baseDto= new HttpBaseDto();
+			baseDto.setData( deviceInfos );
+			return baseDto;
+		}
+	}
 }
